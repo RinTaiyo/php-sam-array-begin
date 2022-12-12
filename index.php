@@ -8,8 +8,20 @@ print_r($arrRange);
 $string=implode('**',$arrRange);//2
 echo $string;
 
+
+$res10 = array_filter($arrRange, fn($item) => $item % 2 == 0);
+unset($arrRange);
+count($res10); //3
+
 for($i=0;$i<20;$i++){$arrRandom[]=rand(-5,10);} //5
 print_r($arrRandom);
+
+for ($i = 0; $i < count($arrRange); $i++) { //4
+    if ($arrRange[$i] < 0) {
+    $arrRange[$i] = $arrRange[$i] * -1;
+    }
+    }
+    print_r($arrRange);
 
 
 $arr_unique=array_unique($arrRandom);
@@ -19,6 +31,12 @@ echo('Количество повторений в массиве:'.count($arr_u
 $sumArr=array_sum($arrRandom);//7
 echo("Сумма элементов массива:".$sumArr);
 
+$resss = array_reduce($arrRandom, function($carry, $item){
+    if($item % 3 == 0){
+    $carry *= $item;
+    };
+    return $carry;
+    }, 1); //8
 
 unset($arrRandom[2],$arrRandom[3],$arrRandom[4]); //10
 
